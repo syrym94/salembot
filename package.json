@@ -1,0 +1,34 @@
+{
+  "name": "salemsosedbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src out-dir dist",
+    "start": "nodemon --exec babel-node index"
+  },
+  "author": "Syrym Zhaiyk",
+  "license": "MIT",
+  "dependencies": {
+    "app-module-path": "^2.2.0",
+    "compression": "^1.7.4",
+    "date-and-time": "^0.6.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.17.1",
+    "isomorphic-fetch": "^2.2.1",
+    "moysklad": "^0.4.2",
+    "node": "^12.4.0",
+    "node-emoji": "^1.10.0",
+    "slimbot": "^0.8.7"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/plugin-transform-arrow-functions": "^7.2.0",
+    "@babel/preset-env": "^7.4.5",
+    "babel-loader": "^8.0.6",
+    "nodemon": "^1.19.1"
+  }
+}
