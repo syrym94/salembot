@@ -1,6 +1,8 @@
 const showItems = async data => {
   var emoji = require('node-emoji')
   console.log("showing products");
+  const group = await data.ms.GET('entity/counterparty/267af463-964d-11e9-9109-f8fc001a230e')
+  console.log(group)
   const raw_folders = await data.ms.GET('entity/productfolder',{
     limit:100
   })

@@ -26,7 +26,7 @@ const newOrder = async data => {
         href: `https://online.moysklad.ru/api/remap/1.1/entity/counterparty/${counterPartyID}`,
         type: "counterparty",
         mediaType: "application/json"
-      }
+      },
     }
   });
   console.log("successfuly created new EMPTY customer order\nnow adding item to the order");

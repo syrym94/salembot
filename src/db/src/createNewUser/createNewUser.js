@@ -7,7 +7,8 @@ const createNewUser = async (data) =>{
         name: `${first_name}${last_name}`,
         phone: data.message.contact.phone_number,
         description: `telegram: @${data.message.from.username}`,
-        companyType: 'individual'
+        companyType: 'individual',
+        tags: [ 'telegramclients' ]
     })
     console.log(newUser)
     return true
