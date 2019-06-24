@@ -44,7 +44,7 @@ const getCustomerOrder = async data => {
         data.slimbot.sendMessage(
           data.message.chat.id,
           `Сосед, все что ты собрал в списке ниже, если хочешь изменить заказ, просто жми на любую позицию!\nСумма: ${order.sum /
-            100}тг\nДоставка: 1000тг\nИтого: ${order.sum /
+            100}тг\nДоставка по Алматы: 1000тг\nИтого: ${order.sum /
               100 + 1000}тг`,
           params
         );
