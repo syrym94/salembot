@@ -1,11 +1,35 @@
 const showItems = async data => {
   var emoji = require('node-emoji')
   console.log("showing products");
-  const group = await data.ms.GET('entity/counterparty/267af463-964d-11e9-9109-f8fc001a230e')
-  console.log(group)
   const raw_folders = await data.ms.GET('entity/productfolder',{
     limit:100
   })
+  if(data.query.data === 'Доставка'){
+    let arr = []
+    const raw_services = await data.ms.GET("entity/service", {
+      filter:{
+        pathName: data.query.data
+      }
+    })
+    for(let i=0;i<raw_services.rows.length;i++){
+      arr.push([{text:raw_services.rows[i].name, callback_data: raw_services.rows[i].id}])
+      var callback = raw_services.rows[0].folder === undefined ? "/catalog" : exactFolder.rows[0].folder.pathName
+    }
+    arr.push([{text: "◀︎Назад", callback_data: callback}])
+    const params = {
+      parse_mode: "Markdown",
+      reply_markup: JSON.stringify({
+        inline_keyboard: arr
+      })
+    };
+    data.slimbot.editMessageText(
+      data.query.message.chat.id,
+      data.query.message.message_id,
+      `${raw_services.rows[0].pathName}`,
+        params
+    );
+    return
+  } else{
   for(let i=0;i<raw_folders.rows.length;i++){
     if(raw_folders.rows[i].name===data.query.data){
       var exactFolder= await data.ms.GET(`https://online.moysklad.ru/api/remap/1.1/report/stock/all?store.id=f5a37aa8-77d8-11e9-912f-f3d400078b6b&productFolder.id=${raw_folders.rows[i].id}`)
@@ -34,7 +58,6 @@ const showItems = async data => {
     for(let y=0;y<raw_products.rows.length;y++){
       if(exactFolder.rows[i].name === raw_products.rows[y].name){
           var callback = exactFolder.rows[0].folder.pathName === undefined ? "/catalog" : exactFolder.rows[0].folder.pathName
-          console.log(exactFolder.rows[i])
           arr.push([{text: raw_products.rows[y].name, callback_data: raw_products.rows[y].id}])
       }
     }
@@ -58,6 +81,7 @@ const showItems = async data => {
   );
   return
 };
+}
 }
 export default showItems;
 

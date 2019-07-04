@@ -2,7 +2,7 @@ import {getCustomerOrder} from './util'
 var emoji = require('node-emoji')
 
 const cart = async data => {
-  console.log("showing cart",data.message);
+  console.log("showing cart");
   //check if cart(customerOrder exists)
   const cart = await getCustomerOrder(data)
   if(!cart){

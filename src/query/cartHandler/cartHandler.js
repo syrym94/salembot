@@ -5,6 +5,7 @@ import { increase } from "./func"
 import { decrease } from "./func"
 import { confirmOrder } from "./func"
 import { enterNumber } from "./func"
+import { delivery } from "./func"
 
 const cartHandler = (cartAction, data, num) => {
   switch (cartAction.action) {
@@ -28,14 +29,18 @@ const cartHandler = (cartAction, data, num) => {
       console.log("entering the number");
       enterNumber(data,num)
       break;
+    case "f":
+      console.log("Choosing delivery method");
+      delivery(data)
+      break;
     case "+":
-    console.log("incresing number of product");
-    increase(data)
-    break;
+      console.log("incresing number of product");
+      increase(data)
+      break;
     case "-":
-    console.log("decreasing number of product");
-    decrease(data)
-    break;
+      console.log("decreasing number of product");
+      decrease(data)
+      break;
   }
 };
 export default cartHandler;

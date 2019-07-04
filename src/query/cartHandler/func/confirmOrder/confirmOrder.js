@@ -32,7 +32,7 @@ const confirmOrder = async data => {
   data.slimbot.editMessageText(
     data.query.message.chat.id,
     data.query.message.message_id,
-    emoji.emojify(`Сосед, напиши свой адрес доставки, жми кнопку “подтвердить заказ”:grin:`),
+    emoji.emojify(`Сосед, напиши свой город, название улицы, номер дома для доставки одним сообщением и жми кнопку “подтвердить заказ”:grin:`),
     params
   )
   } else {

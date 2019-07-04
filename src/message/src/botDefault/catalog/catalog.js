@@ -6,6 +6,9 @@ const catalog = async data => {
       pathName: ""
     }
   });
+  // const fullCatalog1 = await data.ms.GET(`/entity/productfolder/d1407d1a-611b-11e9-9ff4-31500011a220`)
+
+  // console.log(fullCatalog1)
   let arr = [];
   fullCatalog.rows.forEach((item, i) => {
     if (
@@ -23,6 +26,7 @@ const catalog = async data => {
       arr.push([{ text: item.name, callback_data: item.name }]);
     }
   });
+      // arr.push([{ text: fullCatalog1.name, callback_data: fullCatalog1.name }]);
 
   const params = {
     parse_mode: "Markdown",
