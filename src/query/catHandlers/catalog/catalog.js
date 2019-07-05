@@ -21,7 +21,9 @@ const catalog = async data => {
       item.name != "Кулинария" &&
       item.name != "Подарки" &&
       item.name != "Куриные продукты" &&
-      item.name != "Рыба и морепродукты"
+      item.name != "Рыба и морепродукты" &&
+      item.name != "Кофейня" &&
+      item.name != "La flore"
     ) {
       arr.push([{ text: item.name, callback_data: item.name }]);
     }
