@@ -6,7 +6,7 @@ const cart = async data => {
   //check if cart(customerOrder exists)
   const cart = await getCustomerOrder(data)
   if(!cart){
-      data.slimbot.sendMessage(data.message.chat.id, 'Сосед, твоя корзина пока пуста, жми кнопку «Список продуктов🛒», чтобы просмотреть товары, доступные в магазине!🥑')
+      data.slimbot.sendMessage(data.message.chat.id, emoji.emojify('Сосед, твоя корзина пока пуста, жми кнопку «Список продуктов :apple::croissant::cheese_wedge:», чтобы просмотреть товары, доступные в магазине!🥑'))
   }
 };
 export default cart;

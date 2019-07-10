@@ -7,6 +7,7 @@ const showMessage = (text, id, slimbot) => {
 };
 
 const decrease = async data => {
+  var emoji = require('node-emoji')
   let product = JSON.parse(data.query.data);
   const rawOrders = await data.ms.GET(`entity/customerorder`);
   let productID = product.data;
@@ -58,8 +59,8 @@ const decrease = async data => {
                   `/entity/customerorder/${order.id}/positions/${
                     positions.rows[y].id
                   }`,
-                  showMessage(
-                    "Продукт полностью удален из корзины, жми кнопку «Список продуктов🛒» для добавления нового товара или «Корзина» для подтверждения заказа",
+                  showMessage(emoji.emojify(
+                    "Продукт полностью удален из корзины, жми кнопку «Список продуктов :apple::croissant::cheese_wedge:» для добавления нового товара или «Корзина» для подтверждения заказа"),
                     data.query.id,
                     data.slimbot
                   )
@@ -71,7 +72,7 @@ const decrease = async data => {
                   await data.ms.DELETE(`/entity/customerorder/${order.id}`),
                     data.slimbot.sendMessage(
                       data.query.from.id,
-                      "Сосед, твоя корзина пуста, жми кнопку «Список продуктов🛒», чтобы просмотреть товары, доступные в магазине!🥑"
+                      emoji.emojify("Сосед, твоя корзина пуста, жми кнопку «Список продуктов :apple::croissant::cheese_wedge:», чтобы просмотреть товары, доступные в магазине!🥑")
                     );
                 }
               }
