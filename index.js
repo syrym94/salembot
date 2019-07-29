@@ -3,7 +3,6 @@ import Slimbot from "slimbot";
 import { queryHandler, messageHandler } from "./src";
 import date from "date-and-time";
 import "app-module-path/register";
-import confirmOrder from './src/query/cartHandler/func/confirmOrder/confirmOrder'
 
 require("dotenv").config();
 require("isomorphic-fetch");

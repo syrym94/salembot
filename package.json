@@ -20,7 +20,8 @@
     "moysklad": "^0.4.2",
     "node": "^12.4.0",
     "node-emoji": "^1.10.0",
-    "slimbot": "^0.8.7"
+    "slimbot": "^0.8.7",
+    "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",

@@ -97,7 +97,7 @@ const showItems = async data => {
                 ]);
               }
             } else {
-              console.log('somewhere else');
+              // console.log('somewhere else');
               var callback =
                   exactFolder.rows[0].folder.pathName === undefined
                     ? "/catalog"

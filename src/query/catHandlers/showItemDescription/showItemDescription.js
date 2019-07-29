@@ -21,7 +21,7 @@ const showItemDescription = async (item, data) => {
       inline_keyboard: arr
     })
   };
-  console.log(raw_service.id,raw_service,params)
+  // console.log(raw_service.id,raw_service,params)
   data.slimbot.editMessageText(
     data.query.message.chat.id,
     data.query.message.message_id,
@@ -46,13 +46,47 @@ const showItemDescription = async (item, data) => {
       inline_keyboard: arr
     })
   };
-  console.log(item[0].id,item[0].productFolder.name,params)
-  data.slimbot.editMessageText(
-    data.query.message.chat.id,
-    data.query.message.message_id,
-    msg,
-    params
+  const fetch = require("node-fetch");
+  const base64Auth = new Buffer(process.env.LOGIN + ':' + process.env.PASSWORD).toString(
+    "base64"
   );
+  const fetchOptions = {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      Authorization: `Basic ${base64Auth}`
+    },
+    redirect: "manual"
+  };
+  try {
+   async function getAdress() { await fetch(
+    `${item[0].image.miniature.href}`,
+    fetchOptions
+  )
+    .then(function(resp) {
+      if (resp.status === 302) {
+        adress = resp.headers.get("location");
+        return adress;
+      }
+      return null;
+    })
+    .catch(function(err) {
+      console.log(err);
+    })
+  return adress}
+  let adress =  await getAdress().then(data => data)
+  data.slimbot.sendPhoto(data.query.message.chat.id, adress)
+}
+catch(e){
+  console.log(e.message)
+}
+  finally {
+    data.slimbot.sendMessage(
+      data.query.message.chat.id,
+      msg,
+      params
+    )
+  }
   }
 };
 export default showItemDescription;
