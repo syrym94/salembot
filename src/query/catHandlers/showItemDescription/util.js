@@ -24,12 +24,18 @@ const itemDesc = async (item, data) => {
     price = `${rawPrice} тенге`;
   }
   let country = "";
+  let description;
+  if(item[0].description){
+    description = 'Описание:\n' + item[0].description
+  }else{
+    description = '';
+  }
   if ("country" in item[0]) {
     const countryJson = await data.ms.GET(item[0].country.meta.href);
     country = `${countryJson.description}`;
   }
 
-  const msg = [name, country, price ];
+  const msg = [name, country, price, description ];
   return msg.join("\n");
 }
 };
