@@ -16,7 +16,7 @@ const getCustomerOrder = async data => {
         let arr = [];
         let booleanArr = []
         for (var y = 0; y < positions.rows.length; y++) {
-            let a = positions.rows[y].assortment.name === "Доставка по Алматы" ||
+            let a = positions.rows[y].assortment.name === "Доставка по Алматы через Glovo" ||
               positions.rows[y].assortment.name ===
                 "Доставка в другие города Казахстана" ||
               positions.rows[y].assortment.name === "Самовывоз с Тулебаева 114а"
