@@ -35,9 +35,13 @@ const getCustomerOrder = async data => {
             }
           ]);
         }
+        console.log(order)
         let numberedArr = booleanArr.sort()
         arr.push([
-          { text: "Очистить корзину", callback_data: '{"action": "c"}' }
+          { text: "Очистить корзину", callback_data: JSON.stringify({
+            data: order.id,
+            action: "c"
+          }) }
         ]);
         for (let k = 0; k < arr.length; k++) {
           let innerArray = arr[k];
