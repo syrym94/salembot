@@ -1,4 +1,5 @@
 const catalog = async data => {
+  try{
   console.log("pressed query /catalog\nreturning full catalog");
   const fullCatalog = await data.ms.GET("/entity/productfolder", {
     limit: 100,
@@ -42,5 +43,8 @@ const catalog = async data => {
     "Сосед, в этом разделе ты можешь просмотреть полный список продуктов магазина Салем, Сосед!",
     params
   );
-};
+} catch(e){
+  console.log('hey it works')
+}
+}
 export default catalog;

@@ -18,5 +18,5 @@ const showSubGroup = (data, sub) => {
     params
   );
   return
-};
+}
 export default showSubGroup;

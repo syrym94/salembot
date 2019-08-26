@@ -54,6 +54,7 @@ const showItems = async data => {
         );
       }
     }
+    // console.log(exactFolder)
     if (exactFolder.meta.size === 0) {
       data.slimbot.sendMessage(
         data.query.from.id,
@@ -83,8 +84,7 @@ const showItems = async data => {
             if (
               exactFolder.rows[i].folder.pathName === "Фрукты, овощи и зелень"
             ) {
-              if (exactFolder.rows[i].stock > 1) {
-                console.log('in fruits');
+              if (exactFolder.rows[i].stock > 0.2) {
                 var callback =
                   exactFolder.rows[0].folder.pathName === undefined
                     ? "/catalog"
@@ -97,8 +97,8 @@ const showItems = async data => {
                 ]);
               }
             } else {
-              // console.log('somewhere else');
-              var callback =
+              if (exactFolder.rows[i].stock > 0.2) {
+                var callback =
                   exactFolder.rows[0].folder.pathName === undefined
                     ? "/catalog"
                     : exactFolder.rows[0].folder.pathName;
@@ -108,6 +108,7 @@ const showItems = async data => {
                     callback_data: raw_products.rows[y].id
                   }
                 ]);
+              }
             }
           }
           else if(exactFolder.rows[i] === undefined){
@@ -135,6 +136,7 @@ const showItems = async data => {
       return;
     }
   }
+
 };
 export default showItems;
 
