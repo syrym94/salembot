@@ -38,7 +38,7 @@ const confirmOrder = async data => {
   } else {
   showMessage(emoji.emojify(`Рахмет, сосед, заказ принят, мы свяжемся с тобой по указаному в telegram номеру, чтобы уточнить детали :rocket:`), data.query.id, data.slimbot)
   data.slimbot.sendMessage(
-    '@salemsosedtelegram',`Новый заказ от ${data.query.from.first_name}`)  
+    '@salemsosedtelegram',`Новый заказ`)  
   }
 
   if(messageFromUser.mes !== undefined && messageFromUser.mes !== 'Корзина🧩'){
