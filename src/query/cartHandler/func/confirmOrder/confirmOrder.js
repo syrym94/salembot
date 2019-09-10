@@ -35,10 +35,24 @@ const confirmOrder = async data => {
     emoji.emojify(`Сосед, напиши свой город, название улицы, номер дома для доставки одним сообщением и жми кнопку “подтвердить заказ”:grin:`),
     params
   )
+  const rawData = await data.ms.PUT(
+    `entity/customerorder/${incomingOrder.order.id}`,
+    {
+      state: {
+        meta: {
+        href: 'https://online.moysklad.ru/api/remap/1.1/entity/customerorder/metadata/states/f5a40ec5-205d-11e9-9ff4-34e80000bb5f',
+        metadataHref: 'https://online.moysklad.ru/api/remap/1.1/entity/customerorder/metadata',
+        type: 'state',
+        mediaType: 'application/json'
+      },
+        name: 'Подтвержден'
+      }
+    }
+  )
   } else {
   showMessage(emoji.emojify(`Рахмет, сосед, заказ принят, мы свяжемся с тобой по указаному в telegram номеру, чтобы уточнить детали :rocket:`), data.query.id, data.slimbot)
   data.slimbot.sendMessage(
-    '@salemsosedtelegram',`Новый заказ`)  
+    '@salemsosedtelegram',`Новый заказ`)
   }
 
   if(messageFromUser.mes !== undefined && messageFromUser.mes !== 'Корзина🧩'){

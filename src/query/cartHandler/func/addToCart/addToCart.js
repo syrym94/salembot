@@ -18,6 +18,7 @@ const addToCart = async data => {
     newOrder(data);
   } else {
     console.log("orded exists\nadding to existing order");
+    console.log(doesOrderExist,'&&&&&&&&&&&',data);
     addToOrder(doesOrderExist ,data)
   }
 };

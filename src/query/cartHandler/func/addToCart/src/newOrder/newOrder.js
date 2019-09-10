@@ -8,6 +8,7 @@ const newOrder = async data => {
   });
   console.log(rawCounterParty)
   const counterPartyID = rawCounterParty.rows[0].id;
+  console.log(counterPartyID)
   const newOrder = await data.ms.POST("entity/customerorder", {
     organization: {
       meta: {

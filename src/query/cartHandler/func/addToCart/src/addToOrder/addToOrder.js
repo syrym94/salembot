@@ -10,6 +10,9 @@ const showMessage = (text, id, slimbot) => {
 
 const addToOrder = async (order, data) => {
   const orderID = order.id;
+  // console.log(order,'++++++++++')
+  // let income = 
+  // if(data.query === undefined)
   const rawProductData = JSON.parse(data.query.data);
   const productID = rawProductData.data;
   if (await checkIfInOrder(orderID, productID, data.ms)) {
