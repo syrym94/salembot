@@ -2,7 +2,7 @@ import { itemDesc } from "./util";
 var emoji = require('node-emoji')
 
 const showItemDescription = async (item, data) => {
-  if (data.query.data === 'd1412b2f-611b-11e9-9ff4-31500011a224' || data.query.data === '9c4298d8-9d71-11e9-9107-5048000fb3c6' || data.query.data === '93986de0-9d95-11e9-912f-f3d4001482d3'){
+  if (data.query.data === 'd1412b2f-611b-11e9-9ff4-31500011a224' || data.query.data === '9c4298d8-9d71-11e9-9107-5048000fb3c6' || data.query.data === '93986de0-9d95-11e9-912f-f3d4001482d3' || data.query.data === 'cb51764a-d541-11e9-0a80-046a0004c4d0'){
     const msg = await itemDesc(item, data);
     const raw_service = await data.ms.GET(`entity/service/${data.query.data}`)
     const arr = [

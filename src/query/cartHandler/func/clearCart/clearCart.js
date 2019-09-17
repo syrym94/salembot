@@ -11,7 +11,7 @@ const clearCart = async (data) => {
     // let parsedOrderId = JSON.parse(data.query.data)
     // console.log(parsedOrderId.data)
     // console.log(a.rows[0].meta,'+++++',a.rows[0].owner,'_________',a.rows[0].agent,')))))))))',a.rows[0].documents)
-    let b = a.rows[1].id 
+    let b = a.rows[a.rows.length - 1].id 
     data.ms.DELETE(`https://online.moysklad.ru/api/remap/1.1/entity/customerorder/${b}`) 
     data.slimbot.sendMessage(data.query.from.id,`Сосед, твоя корзина опустела. Жми на «список продуктов», чтобы собрать корзину снова!`);
   //   let product = JSON.parse(data.query.data);

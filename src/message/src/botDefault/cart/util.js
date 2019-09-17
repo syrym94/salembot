@@ -2,6 +2,7 @@ import addToOrder from "../../../../query/cartHandler/func/addToCart/src/addToOr
 import cart from "./cart";
 var emoji = require("node-emoji");
 const getCustomerOrder = async data => {
+  console.log(data)
   let momentArr = [];
   const rawOrders = await data.ms.GET(`entity/customerorder`);
   for (let i = 0; i < rawOrders.rows.length; i++) {
@@ -75,7 +76,8 @@ const getCustomerOrder = async data => {
               positions.rows[y].assortment.name ===
                 "Доставка в другие города Казахстана" ||
               positions.rows[y].assortment.name ===
-                "Самовывоз с Тулебаева 114а";
+                "Самовывоз с Тулебаева 114а" ||
+              positions.rows[y].assortment.name === 'Доставка по Алматы через Glovo не более 4 км'
             booleanArr[y] = a;
             a++;
             arr.push([
@@ -137,12 +139,22 @@ const getCustomerOrder = async data => {
               inline_keyboard: arr
             })
           };
+          console.log(data)
+          if(data.message){
           data.slimbot.sendMessage(
             data.message.chat.id,
             `Сосед, все что ты собрал в списке ниже, если хочешь изменить заказ, просто жми на любую позицию!\nСумма: ${order.sum /
               100}тг\nИтого: ${order.sum / 100}тг`,
             params
-          );
+          );}
+          else{
+            data.slimbot.sendMessage(
+              data.query.from.id,
+              `Сосед, все что ты собрал в списке ниже, если хочешь изменить заказ, просто жми на любую позицию!\nСумма: ${order.sum /
+                100}тг\nИтого: ${order.sum / 100}тг`,
+              params
+            );
+          }
         }
         return true;
       }

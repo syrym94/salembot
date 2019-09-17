@@ -10,8 +10,10 @@ const showMessage = (text, id, slimbot) => {
 };
 
 const confirmOrder = async data => {
+  let isOrderNew = false
   var incomingOrder = require('../../../../message/src/botDefault/cart/util')
-  if(messageFromUser.mes === 'Корзина🛒'){
+  console.log(incomingOrder.order,'+++++++++++')
+  if(messageFromUser.mes === 'Корзина🛒' && isOrderNew === false ){
   let arr = [];
   arr.push(
     [
@@ -32,9 +34,13 @@ const confirmOrder = async data => {
   data.slimbot.editMessageText(
     data.query.message.chat.id,
     data.query.message.message_id,
-    emoji.emojify(`Сосед, напиши свой город, название улицы, номер дома для доставки одним сообщением и жми кнопку “подтвердить заказ”:grin:`),
-    params
+    emoji.emojify(`Сосед, напиши свой город, название улицы, номер дома для доставки одним сообщением`)
   )
+  data.slimbot.on('message', message=>{
+    console.log(data,'((*66666')
+    data.slimbot.sendMessage(data.query.from.id, 'Жми подтвердить заказ', params);
+  })
+  isOrderNew = true
   const rawData = await data.ms.PUT(
     `entity/customerorder/${incomingOrder.order.id}`,
     {
@@ -49,19 +55,16 @@ const confirmOrder = async data => {
       }
     }
   )
-  } else {
-  showMessage(emoji.emojify(`Рахмет, сосед, заказ принят, мы свяжемся с тобой по указаному в telegram номеру, чтобы уточнить детали :rocket:`), data.query.id, data.slimbot)
-  data.slimbot.sendMessage(
-    '@salemsosedtelegram',`Новый заказ`)
-  }
-
-  if(messageFromUser.mes !== undefined && messageFromUser.mes !== 'Корзина🧩'){
+  } 
+  else if(messageFromUser.mes !== undefined && messageFromUser.mes !== 'Корзина🧩'){
   let counterparty = await data.ms.GET(
     `entity/counterparty`,{filter: {
       code: data.query.from.id},
     }
   );
   let address = await data.ms.PUT(`entity/counterparty/${counterparty.rows[0].id}`,{ actualAddress: `${messageFromUser.mes}` },)
+  showMessage("Спасибо за заказ,если хочешь сформировать новый заказ жм исписок продуктов!", data.query.id, data.slimbot);
+     isOrderNew = true
   }
   // data.slimbot.on("message", message => {
   //   data.slimbot.sendMessage(
