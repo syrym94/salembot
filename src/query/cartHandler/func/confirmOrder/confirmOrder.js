@@ -9,11 +9,9 @@ const showMessage = (text, id, slimbot) => {
   slimbot.answerCallbackQuery(id, params);
 };
 
-const confirmOrder = async data => {
-  let isOrderNew = false
+const confirmOrder = async (data) => {
   var incomingOrder = require('../../../../message/src/botDefault/cart/util')
-  console.log(incomingOrder.order,'+++++++++++')
-  if(messageFromUser.mes === 'Корзина🛒' && isOrderNew === false ){
+  if(messageFromUser.mes === 'Корзина🛒'){
   let arr = [];
   arr.push(
     [
@@ -37,10 +35,13 @@ const confirmOrder = async data => {
     emoji.emojify(`Сосед, напиши свой город, название улицы, номер дома для доставки одним сообщением`)
   )
   data.slimbot.on('message', message=>{
-    console.log(data,'((*66666')
-    data.slimbot.sendMessage(data.query.from.id, 'Жми подтвердить заказ', params);
+    if(message.text.includes('Список продуктов 🍎🥐🧀') || message.text.includes('Корзина🛒') || message.text.includes('/start')){
+    console.log(data,'((*66666', message)
+    }
+    else {
+      data.slimbot.sendMessage(data.query.from.id, 'Сосед, жми на кнопку «подтвердить заказ»', params)
+    }
   })
-  isOrderNew = true
   const rawData = await data.ms.PUT(
     `entity/customerorder/${incomingOrder.order.id}`,
     {
@@ -63,8 +64,7 @@ const confirmOrder = async data => {
     }
   );
   let address = await data.ms.PUT(`entity/counterparty/${counterparty.rows[0].id}`,{ actualAddress: `${messageFromUser.mes}` },)
-  showMessage("Спасибо за заказ,если хочешь сформировать новый заказ жм исписок продуктов!", data.query.id, data.slimbot);
-     isOrderNew = true
+  showMessage("Сосед, рахмет за заказ, если хочешь сформировать новый - жми список продуктов!", data.query.id, data.slimbot);
   }
   // data.slimbot.on("message", message => {
   //   data.slimbot.sendMessage(

@@ -92,3 +92,4 @@ slimbot.on(/pay/i, function (message) {
       slimbot.sendMessage(message.chat.id, "Payment complete!");
     }
   });
+  // 947395009:AAEeSb-tCP2crdbHo5XU41A6KHx8j8YPoaA

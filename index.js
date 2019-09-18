@@ -14,6 +14,7 @@ const ms = Moysklad({
 });
 
 slimbot.on("message", message => {
+  console.log(message,'**************')
   const data = { slimbot, ms, message };
   console.log(
     "################################################################"

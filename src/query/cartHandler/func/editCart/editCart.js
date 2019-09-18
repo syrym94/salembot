@@ -7,7 +7,7 @@ const editCart = async data => {
     const agentInfo = await data.ms.GET(rawOrders.rows[i].agent.meta.href);
     if (agentInfo.code === String(data.query.from.id)) {
       console.log("Order exists!");
-      const order = rawOrders.rows[i];
+      const order = rawOrders.rows[rawOrders.rows.length-1];
       if (order.positions.meta.size !== 0) {
         const positions = await data.ms.GET(
           `entity/customerorder/${order.id}/positions`,
@@ -19,6 +19,7 @@ const editCart = async data => {
         for (let y = 0; y < positions.rows.length; y++) {
           if (positions.rows[y].assortment.id === exactProduct.id) {
             var outer = positions.rows[y]
+            if(i=1){
             arr.push(
               [
                 {
@@ -40,7 +41,7 @@ const editCart = async data => {
                 //     action: 'd'})
                 // }
               ]
-            );
+            )}
           }
         }
         const params = {
