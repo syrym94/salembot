@@ -36,10 +36,18 @@ const catalog = async data => {
       inline_keyboard: arr
     })
   };
+  if(data.message){
   data.slimbot.sendMessage(
     data.message.chat.id,
     "Сосед, в этом разделе ты можешь просмотреть полный список продуктов магазина Салем, Сосед!",
     params
   );
+}else{
+  data.slimbot.sendMessage(
+    data.query.from.id,
+    "Сосед, в этом разделе ты можешь просмотреть полный список продуктов магазина Салем, Сосед!",
+    params
+  );
+}
 };
 export default catalog;
