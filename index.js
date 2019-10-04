@@ -1,6 +1,6 @@
 import Moysklad from "moysklad";
 import Slimbot from "slimbot";
-import { queryHandler, messageHandler } from "./src";
+import { queryHandler, messageHandler,inlineQuery } from "./src";
 import date from "date-and-time";
 import "app-module-path/register";
 
@@ -12,9 +12,7 @@ const ms = Moysklad({
   login: process.env.LOGIN,
   password: process.env.PASSWORD
 });
-
 slimbot.on("message", message => {
-  console.log(message,'**************')
   const data = { slimbot, ms, message };
   console.log(
     "################################################################"
@@ -38,6 +36,10 @@ slimbot.on("callback_query", query => {
     date.format(now, "YYYY/MM/DD HH:mm:ss") + " from user: " + query.from.id
   );
   queryHandler(data);
+});
+slimbot.on('inline_query', query => {
+  let data = {slimbot, ms, query}
+  inlineQuery(data)
 });
 
 slimbot.startPolling();

@@ -7,6 +7,7 @@ import { confirmOrder } from "./func"
 import { enterNumber } from "./func"
 import { delivery } from "./func"
 import { finalPart} from "./func"
+import { search } from "./func"
 
 const cartHandler = (cartAction, data, num) => {
   switch (cartAction.action) {
@@ -41,6 +42,10 @@ const cartHandler = (cartAction, data, num) => {
     case "-":
       console.log("decreasing number of product");
       decrease(data)
+      break;
+    case "s":
+      console.log("searching the product");
+      search(data)
       break;
     case "q":
       console.log("FinalPart",data);

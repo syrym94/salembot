@@ -7,5 +7,6 @@ import confirmOrder from './confirmOrder/confirmOrder'
 import enterNumber from './enterNumber/enterNumber'
 import delivery from './delivery/delivery'
 import finalPart from './finalPart/finalPart'
+import search from './search/search'
 
-export {addToCart, clearCart, editCart, increase, decrease, confirmOrder, enterNumber, delivery, finalPart}
+export {addToCart, clearCart, editCart, increase, decrease, confirmOrder, enterNumber, delivery, finalPart, search}

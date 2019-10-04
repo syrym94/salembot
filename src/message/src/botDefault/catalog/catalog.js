@@ -10,6 +10,7 @@ const catalog = async data => {
 
   // console.log(fullCatalog1)
   let arr = [];
+  arr.push([{text:"Искать по названию",switch_inline_query_current_chat: ""}]);
   fullCatalog.rows.forEach((item, i) => {
     if (
       item.name != "Алкоголь" &&
