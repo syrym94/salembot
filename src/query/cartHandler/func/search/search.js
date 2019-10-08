@@ -1,6 +1,5 @@
 import Fuse from "fuse.js";
-const product = require("../../../../../product.json");
-const search = async data => {
+const search = async (data,sortedArr) => {
   var options = {
     shouldSort: true,
     includeScore: true,
@@ -9,8 +8,7 @@ const search = async data => {
     minMatchCharLength: 1,
     keys: ["name"]
   };
-  var fuse = new Fuse(product, options);
-
+  var fuse = new Fuse(sortedArr, options);
   let item = fuse.search(data.query.query);
   let arr = []
   for (let i = 0; i < item.length; i++) {
