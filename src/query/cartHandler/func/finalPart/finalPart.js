@@ -8,8 +8,8 @@ const showMessage = (text, id, slimbot) => {
 };
 
 const finalPart = async data => {
-  console.log(data, '********')
-  showMessage("Сосед, рахмет за заказ, если хочешь сформировать новый - жми список продуктов!", data.query.id, data.slimbot);
+  showMessage("Сосед, рахмет за заказ", data.query.id, data.slimbot);
   catalog(data)
+  data.slimbot.sendMessage('@SSteleg','Новый заказ')
 }
 export default finalPart;
